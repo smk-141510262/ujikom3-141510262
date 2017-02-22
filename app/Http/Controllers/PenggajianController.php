@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PegawaiModel;
+use App\PenggajianModel;
 
 class PenggajianController extends Controller
 {
@@ -14,6 +16,8 @@ class PenggajianController extends Controller
     public function index()
     {
         //
+        $pegawais = PegawaiModel::all();
+        return view('penggajian.index', compact('pegawais'));
     }
 
     /**

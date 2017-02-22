@@ -19,6 +19,50 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #00008B;
+        }
+
+        h2 {
+            color: blue;
+            text-shadow: 2px 2px 4px red;
+        }
+
+        #grad1 {
+            height: 250px;
+            background: -webkit-linear-gradient(left, red, orange, yellow); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(left, red, orange, yellow); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(left, red, orange, yellow); /* For Fx 3.6 to 15 */
+            background: linear-gradient(to right, red, orange, yellow); /* Standard syntax (must be last) */
+        }
+        
+    </style>
 </head>
 <body>
     <div id="app">
@@ -35,33 +79,35 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                        
-                        <!--<li><a href="{{ url('/Jabatan') }}">Jabatan</a></li>
-                        <li><a href="{{ url('/Golongan') }}">Golongan</a></li>
-                        <li><a href="{{ url('/Tunjangan') }}">Tunjangan</a></li>
-                        <li><a href="{{ url('/Pegawai') }}">Pegawai</a></li>
-                        <li><a href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a></li>
-                        <li><a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a></li>
-                        <li><a href="{{ url('/Lembur Pegawai') }}">Lembur Pegawai</a></li>
-                        <li><a href="{{ url('/Penggajian') }}">Penggajian</a></li>
-                        -->
+                        <ul>
+                          <li><a class="active" href="{{ url('/home') }}">Home</a></li>
+                          <li><a href="{{ url('/Jabatan') }}">Jabatan</a></li>
+                          <li><a class="active" href="{{ url('/Golongan') }}">Golongan</a></li>
+                          <li><a href="{{ url('/Pegawai') }}">Pegawai</a></li>
+                          <li><a class="active" href="{{ url('/Penggajian') }}">Penggajian</a></li>
+                          <li><a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a></li>
+                          <li><a class="active" href="{{ url('/LemburPegawai') }}">Lembur Pegawai</a></li>
+                          <li><a href="{{ url('/Tunjangan') }}">Tunjangan</a></li>
+                          <li><a class="active" href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a></li>
+                          @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a class="active" href="{{ url('/register') }}">Register</a></li>
+                        @else
+                        </ul>
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
+                        
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -86,6 +132,7 @@
                 </div>
             </div>
         </nav>
+
 
         @yield('content')
     </div>

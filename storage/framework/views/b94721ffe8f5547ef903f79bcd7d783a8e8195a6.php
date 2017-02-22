@@ -3,18 +3,18 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3><b><center> Data Golongan </center></b></h3></div>
+                <div class="panel-heading"><h2><b><center> Data Golongan </center></b></h2></div>
 
                 <div class="panel-body">
-                    <a href="<?php echo e(url('/Golongan/create')); ?>" class="btn btn-success btn-block">Tambah Golongan</a><br>
+                    <a href="<?php echo e(url('/Golongan/create')); ?>" class="btn btn-primary btn-block">Create Data Golongan</a><br>
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <td>No</td>
-                                <td>Kode Golongan</td>
-                                <td>Nama Golongan</td>
-                                <td>Besaran Uang</td>
-                                <td colspan="2">Pilihan:</td>
+                                <td><center><b>No</b></center></td>
+                                <td><center><b>Kode Golongan</b></center></td>
+                                <td><center><b>Nama Golongan</b></center></td>
+                                <td><center><b>Besaran Uang</b></center></td>
+                                <td colspan="2"><center><b>Action</b></center></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,11 +27,11 @@
                                     <td><?php echo e($baru->kode_golongan); ?></td>
                                     <td><?php echo e($baru->nama_golongan); ?></td>
                                     <td><?php echo e($baru->besaran_uang); ?></td>
-                                    <td><a href="<?php echo e(route('Golongan.edit',$baru->id)); ?>" class="btn btn-warning">Ubah</a></td>
+                                    <td><a href="<?php echo e(route('Golongan.edit',$baru->id)); ?>" class="btn btn-success">Edit Data</a></td>
                                     <td>
                                     <?php echo Form::open(['method' => 'DELETE', 'route'=>['Golongan.destroy', $baru->id]]); ?>
 
-                                    <?php echo Form::submit('Delete', ['class' => 'btn btn-danger']); ?>
+                                    <?php echo Form::submit('Delete Data', ['class' => 'btn btn-danger']); ?>
 
                                     <?php echo Form::close(); ?>
 

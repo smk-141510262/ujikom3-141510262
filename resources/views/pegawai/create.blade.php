@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"><h2><b><center> Register & Tambah Data Pegawai </center></b></h2></div>
                 <div class="panel-body">
                     {!!Form::open(['url'=>'/Pegawai', 'class'=>'form-horizontal', 'enctype'=>'multipart/form-data', 'files'=>true])!!}
                         {{ csrf_field() }}

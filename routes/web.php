@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 Route::resource('/Jabatan', 'JabatanController');
 Route::resource('/Golongan', 'GolonganController');
 Route::resource('/Tunjangan', 'TunjanganController');

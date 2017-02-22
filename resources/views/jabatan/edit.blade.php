@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit Data</div>
+                <div class="panel-heading"><h2><b><center> Edit Data Jabatan </center></b></h2></div>
 
                 <div class="panel-body">
                     {!! Form::model($jabatans,['method'=>'PATCH','route'=>['Jabatan.update',$jabatans->id]])!!} <div class="form-group">
@@ -21,7 +21,7 @@
                         {!! Form::text('besaran_uang',null,['class'=>'form-control'])!!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('update',['class'=>'btn btn-success form-control'])!!}
+                        {!! Form::submit('Update Data',['class'=>'btn btn-success form-control'])!!}
                     </div>
                     {!! Form::close()!!}
                 </div>

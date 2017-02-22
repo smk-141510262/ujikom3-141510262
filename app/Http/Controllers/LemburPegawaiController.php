@@ -73,11 +73,11 @@ class LemburPegawaiController extends Controller
     public function edit($id)
     {
         //
-        $lembur_pegawais = LemburPegawaiModel::find();
-        $lembur_pegawai = LemburPegawaiModel::all();
+        $kategori_lemburs = KategoriLemburModel::all();
+        $lembur_pegawais = LemburPegawaiModel::find($id);
         $pegawais = PegawaiModel::all();
         $users = User::all();
-        return view('lemburpegawai.edit', compact('lembur_pegawais', 'lembur_pegawai', 'pegawais', 'users'));
+        return view('lemburpegawai.edit', compact('kategori_lemburs', 'lembur_pegawais', 'pegawais', 'users'));
     }
 
     /**

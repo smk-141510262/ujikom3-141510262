@@ -35,7 +35,7 @@
                         
                         <div class="form-group">
                             <label for="photo" class="form-group">Photo</label>
-                                <input type="file" name="photo" class="form-control" nullable>
+                            <img src="<?php echo e(asset('img/'.$pegawais->photo.'')); ?>" width="250" height="250" class="img-circle img-responsive" alt="Mountain View">                                <input type="file" name="photo" class="form-control" nullable>
                         </div>
 
                         <div class="form-group">

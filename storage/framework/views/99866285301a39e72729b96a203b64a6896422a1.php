@@ -14,20 +14,21 @@
                         <?php echo Form::text('kode_lembur',null,['class'=>'form-control']); ?>
 
                     </div>
+
                     <label>Nama Jabatan</label>
                     <select name="jabatan_id" class="form-control" required>
-                        
                         <?php $__currentLoopData = $jabatans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->nama_jabatan); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select><br>
+
                     <label>Nama Golongan</label>
                     <select name="golongan_id" class="form-control" required>
                         <?php $__currentLoopData = $golongans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->nama_golongan); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select><br>
-                    </div>
+                    
                     <div class="form-group">
                         <?php echo Form::label('Besaran Uang','Besaran Uang'); ?>
 

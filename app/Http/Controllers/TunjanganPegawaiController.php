@@ -77,7 +77,7 @@ class TunjanganPegawaiController extends Controller
         $tunjangans = TunjanganModel::all();
         $pegawais = PegawaiModel::all();
         $users = User::all();
-        return view('tunjanganpegawai.edit', compact('$tunjanganpegawais', 'tunjangans', 'pegawais', 'users'));
+        return view('tunjanganpegawai.edit', compact('tunjanganpegawais', 'tunjangans', 'pegawais', 'users'));
     }
 
     /**

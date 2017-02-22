@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit Pegawai</div>
+                <div class="panel-heading"><h2><b><center> Edit Data Pegawai </center></b></h2></div>
 
                 <div class="panel-body">
                     {!! Form::model($pegawais,['method'=>'PATCH','route'=>['Pegawai.update',$pegawais->id],'files'=>'true'])!!}
@@ -36,11 +36,11 @@
                         
                         <div class="form-group">
                             <label for="photo" class="form-group">Photo</label>
-                                <input type="file" name="photo" class="form-control" nullable>
+                            <img src="{{asset('img/'.$pegawais->photo.'')}}" width="250" height="250" class="img-circle img-responsive" alt="Mountain View">                                <input type="file" name="photo" class="form-control" nullable>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::submit('update',['class'=>'btn btn-success form-control'])!!}
+                            {!! Form::submit('Update Data',['class'=>'btn btn-success form-control'])!!}
                         </div>
                     {!! Form::close()!!}
                 </div>

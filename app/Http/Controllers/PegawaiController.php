@@ -100,7 +100,7 @@ class PegawaiController extends Controller
     {
         //
         $pegawais = PegawaiModel::find($id);
-        return view('pegawai.show', compact('$pegawais'));
+        return view('pegawai.show', compact('pegawais'));
     }
 
     /**
@@ -115,7 +115,7 @@ class PegawaiController extends Controller
         $pegawais = PegawaiModel::find($id);
         $jabatans = JabatanModel::all();
         $golongans = GolonganModel::all();
-        return view('pegawai.edit', compact('$pegawais', 'jabatans', 'golongans'));
+        return view('pegawai.edit', compact('pegawais', 'jabatans', 'golongans'));
     }
 
     /**
@@ -150,7 +150,6 @@ class PegawaiController extends Controller
             }
 
             $pegawais->nip = $request->get('nip');
-            $pegawais->user_id = $users->id;
             $pegawais->jabatan_id = $request->get('jabatan_id');
             $pegawais->golongan_id = $request->get('golongan_id');
             $pegawais->photo = $filename;

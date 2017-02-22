@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit Data</div>
+                <div class="panel-heading"><h2><b><center> Edit Data Jabatan </center></b></h2></div>
 
                 <div class="panel-body">
                     <?php echo Form::model($jabatans,['method'=>'PATCH','route'=>['Jabatan.update',$jabatans->id]]); ?> <div class="form-group">
@@ -25,7 +25,7 @@
 
                     </div>
                     <div class="form-group">
-                        <?php echo Form::submit('update',['class'=>'btn btn-success form-control']); ?>
+                        <?php echo Form::submit('Update Data',['class'=>'btn btn-success form-control']); ?>
 
                     </div>
                     <?php echo Form::close(); ?>

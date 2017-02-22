@@ -8,28 +8,30 @@
                 <div class="panel-body">
                     <?php echo Form::model($tunjanganpegawais,['method'=>'PATCH','route'=>['TunjanganPegawai.update',$tunjanganpegawais->id]]); ?>
 
-                        <div class="form-group">
+
+                    <div class="form-group">
                             <label for="kode_tunjangan_id" class="form-group">Kode Tunjangan</label>
                             <div class="form-group">
                                 <select name="kode_tunjangan_id" class="form-control">
-                                    <option value="<?php echo e($tunjanganpegawais->TunjanganModel->kode_tunjangan); ?>">Kode Tunjangan -- <?php echo e($tunjanganpegawais->TunjanganModel->kode_tunjangan); ?></option>
-                                    <?php $__currentLoopData = $tunjanganvar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->kode_tunjangan); ?></option>
+                                    <?php $__currentLoopData = $tunjangans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                        <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->kode_tunjangan); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group">
+                    </div>
+
+                    <div class="form-group">
                             <label for="pegawai_id" class="form-group">Nama Pegawai</label>
                             <div class="form-group">
                                 <select name="pegawai_id" class="form-control">
-                                    <option value="<?php echo e($tunjanganpegawais->PegawaiModel->User->name); ?>">Nama Pegawai -- <?php echo e($tunjanganpegawais->PegawaiModel->User->name); ?></option>
                                     <?php $__currentLoopData = $pegawais; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->User->name); ?></option>
+                                        <option value="<?php echo e($baru->id); ?>"><?php echo e($baru->User->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                 </select>
                             </div>
                         </div>
+
+                        
                         <div class="form-group">
                             <?php echo Form::submit('update',['class'=>'btn btn-success form-control']); ?>
 
