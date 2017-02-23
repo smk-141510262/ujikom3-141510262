@@ -11,9 +11,6 @@
 |
 */
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 Route::resource('/Jabatan', 'JabatanController');
 Route::resource('/Golongan', 'GolonganController');
 Route::resource('/Tunjangan', 'TunjanganController');
@@ -31,3 +28,7 @@ Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
     });
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

@@ -120,8 +120,11 @@
                         </div>
 
                         <div class="form-group">
-                            <?php echo Form::submit('save',['class'=>'btn btn-primary form-control']); ?>
-
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>

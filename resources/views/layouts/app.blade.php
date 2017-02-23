@@ -19,8 +19,13 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
     <style>
+        body, .navbar-header {
+            background-image: url("Gambar-Itachi-Uchiha-Wallpaper-Keren-6.jpg");
+        }
+        .panel-heading {
+            background-image: url("background-18325_640.jpg");
+        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -41,27 +46,16 @@
             text-decoration: none;
         }
 
-        li a:hover:not(.active) {
+        li a:hover {
             background-color: #111;
         }
-
         .active {
             background-color: #00008B;
         }
-
         h2 {
             color: blue;
             text-shadow: 2px 2px 4px red;
         }
-
-        #grad1 {
-            height: 250px;
-            background: -webkit-linear-gradient(left, red, orange, yellow); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(left, red, orange, yellow); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(left, red, orange, yellow); /* For Fx 3.6 to 15 */
-            background: linear-gradient(to right, red, orange, yellow); /* Standard syntax (must be last) */
-        }
-        
     </style>
 </head>
 <body>
@@ -79,29 +73,27 @@
                     </button>
 
                     <!-- Branding Image -->
-                    
+                    <ul>
+                        <li><a class="active" href="{{ url('/home') }}">Home</a></li>
+                        <li><a href="{{ url('/Jabatan') }}">Jabatan</a></li>
+                        <li><a class="active" href="{{ url('/Golongan') }}">Golongan</a></li>
+                        <li><a href="{{ url('/Pegawai') }}">Pegawai</a></li>
+                        <li><a class="active" href="{{ url('/Penggajian') }}">Penggajian</a></li>
+                        <li><a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a></li>
+                        <li><a class="active" href="{{ url('/LemburPegawai') }}">Lembur Pegawai</a></li>
+                        <li><a href="{{ url('/Tunjangan') }}">Tunjangan</a></li>
+                        <li><a class="active" href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a></li>
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a class="active" href="{{ url('/register') }}">Register</a></li>
+                        @else
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                       
-                        <ul>
-                          <li><a class="active" href="{{ url('/home') }}">Home</a></li>
-                          <li><a href="{{ url('/Jabatan') }}">Jabatan</a></li>
-                          <li><a class="active" href="{{ url('/Golongan') }}">Golongan</a></li>
-                          <li><a href="{{ url('/Pegawai') }}">Pegawai</a></li>
-                          <li><a class="active" href="{{ url('/Penggajian') }}">Penggajian</a></li>
-                          <li><a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a></li>
-                          <li><a class="active" href="{{ url('/LemburPegawai') }}">Lembur Pegawai</a></li>
-                          <li><a href="{{ url('/Tunjangan') }}">Tunjangan</a></li>
-                          <li><a class="active" href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a></li>
-                          @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a class="active" href="{{ url('/register') }}">Register</a></li>
-                        @else
-                        </ul>
-                    
+                        &nbsp;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -132,7 +124,6 @@
                 </div>
             </div>
         </nav>
-
 
         @yield('content')
     </div>

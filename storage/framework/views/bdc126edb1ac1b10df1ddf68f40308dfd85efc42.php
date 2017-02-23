@@ -14,23 +14,20 @@
                                 <td><center><b>Foto</b></center></td>
                                 <td><center><b>NIP</b></center></td>
                                 <td><center><b>Nama Pegawai</b></center></td>
-                                <td><center><b>Nama Jabatan</b></center></td>
-                                <td><center><b>Nama Golongan</b></center></td>
+                                <td><center><b>Status</b></center></td>
                                 <td colspan="1"><center><b>Action</b></center></td>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
-                            $i=1;
+                                $i=1;
                              ?>
-                            <?php $__currentLoopData = $pegawais; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <?php $__currentLoopData = $penggajians; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $baru): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <tr>
                                     <td><?php echo e($i++); ?></td>
-                                    <td><img src="<?php echo e(asset('img/'.$baru->photo.'')); ?>" width="75" height="75" class="img-rounded img-responsive" alt="Responsive image"></td>
-                                    <td><?php echo e($baru->nip); ?></td>
-                                    <td><?php echo e($baru->User->name); ?></td>
-                                    <td><?php echo e($baru->jabatan->nama_jabatan); ?></td>
-                                    <td><?php echo e($baru->golongan->nama_golongan); ?></td>
+                                    <td><img height="100px" alt="Smiley face" width="100px" class="img-circle" src="asset/img/<?php echo e($baru->tunjangan_pegawai->pegawai->photo); ?>"></td>
+                                    <td><?php echo e($baru->tunjangan_pegawai->pegawai->nip); ?></td>
+                                    <td><?php echo e($baru->tunjangan_pegawai->pegawai->User->name); ?></td>
                                     <td><a href="<?php echo e(route('Pegawai.show',$baru->id)); ?>" class="btn btn-warning">Rincian Gaji</a></td>
                                     <?php echo Form::close(); ?>
 

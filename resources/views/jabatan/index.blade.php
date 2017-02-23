@@ -8,7 +8,7 @@
                 
                 <div class="panel-heading"><h2><b><center> Data Jabatan </center></b></h2></div>
 
-                <div class="panel-body" id="grad1">
+                <div class="panel-body">
                     <a href="{{url('/Jabatan/create')}}" class="btn btn-primary btn-block">Create Data Jabatan</a><br>
                     <table class="table table-bordered table-hover">
                         <thead>

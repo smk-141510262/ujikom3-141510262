@@ -61,14 +61,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="permission" class="col-md-4 control-label">Permission</label>
-
-                            <div class="col-md-6">
-                                <input id="permission" type="text" class="form-control" name="permission" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register

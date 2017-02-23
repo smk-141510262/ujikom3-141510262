@@ -19,8 +19,20 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
     <style>
+        body, .navbar-header {
+            background-image: url("Gambar-Itachi-Uchiha-Wallpaper-Keren-6.jpg");
+        }
+        .panel-heading {
+            background-image: url("background-18325_640.jpg");
+        }
+        header {
+            padding: 1em;
+            color: white;
+            background-color: blue;
+            clear: left;
+            text-align: center;
+        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -41,29 +53,21 @@
             text-decoration: none;
         }
 
-        li a:hover:not(.active) {
+        li a:hover {
             background-color: #111;
         }
-
         .active {
             background-color: #00008B;
         }
-
         h2 {
             color: blue;
             text-shadow: 2px 2px 4px red;
         }
-
-        #grad1 {
-    height: 250px;
-    background: -webkit-linear-gradient(left, red, orange, yellow); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, red, orange, yellow); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, red, orange, yellow); /* For Fx 3.6 to 15 */
-    background: linear-gradient(to right, red, orange, yellow); /* Standard syntax (must be last) */
-}
-        
     </style>
 </head>
+<header>
+   <h1>City Gallery</h1>
+</header>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -79,29 +83,27 @@
                     </button>
 
                     <!-- Branding Image -->
-                    
+                    <ul>
+                        <li><a class="active" href="<?php echo e(url('/home')); ?>">Home</a></li>
+                        <li><a href="<?php echo e(url('/Jabatan')); ?>">Jabatan</a></li>
+                        <li><a class="active" href="<?php echo e(url('/Golongan')); ?>">Golongan</a></li>
+                        <li><a href="<?php echo e(url('/Pegawai')); ?>">Pegawai</a></li>
+                        <li><a class="active" href="<?php echo e(url('/Penggajian')); ?>">Penggajian</a></li>
+                        <li><a href="<?php echo e(url('/KategoriLembur')); ?>">Kategori Lembur</a></li>
+                        <li><a class="active" href="<?php echo e(url('/LemburPegawai')); ?>">Lembur Pegawai</a></li>
+                        <li><a href="<?php echo e(url('/Tunjangan')); ?>">Tunjangan</a></li>
+                        <li><a class="active" href="<?php echo e(url('/TunjanganPegawai')); ?>">Tunjangan Pegawai</a></li>
+                        <?php if(Auth::guest()): ?>
+                            <li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
+                            <li><a class="active" href="<?php echo e(url('/register')); ?>">Register</a></li>
+                        <?php else: ?>
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                       
-                        <ul>
-                          <li><a class="active" href="<?php echo e(url('/home')); ?>">Home</a></li>
-                          <li><a href="<?php echo e(url('/Jabatan')); ?>">Jabatan</a></li>
-                          <li><a class="active" href="<?php echo e(url('/Golongan')); ?>">Golongan</a></li>
-                          <li><a href="<?php echo e(url('/Pegawai')); ?>">Pegawai</a></li>
-                          <li><a class="active" href="<?php echo e(url('/Penggajian')); ?>">Penggajian</a></li>
-                          <li><a href="<?php echo e(url('/KategoriLembur')); ?>">Kategori Lembur</a></li>
-                          <li><a class="active" href="<?php echo e(url('/LemburPegawai')); ?>">Lembur Pegawai</a></li>
-                          <li><a href="<?php echo e(url('/Tunjangan')); ?>">Tunjangan</a></li>
-                          <li><a class="active" href="<?php echo e(url('/TunjanganPegawai')); ?>">Tunjangan Pegawai</a></li>
-                          <?php if(Auth::guest()): ?>
-                            <li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
-                            <li><a class="active" href="<?php echo e(url('/register')); ?>">Register</a></li>
-                        <?php else: ?>
-                        </ul>
-                    
+                        &nbsp;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -133,7 +135,6 @@
                 </div>
             </div>
         </nav>
-
 
         <?php echo $__env->yieldContent('content'); ?>
     </div>

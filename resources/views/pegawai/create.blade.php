@@ -67,6 +67,8 @@
                                 <select name="permission" class="form-control">
                                     <option value="Admin">Admin</option>
                                     <option value="Pegawai">Pegawai</option>
+                                    <option value="Bendahara">Bendahara</option>
+                                    <option value="HRD">HRD</option>
                                 </select><br>
                             </div>
                         </div>
