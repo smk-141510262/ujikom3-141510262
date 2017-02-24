@@ -78,13 +78,13 @@ class PegawaiController extends Controller
             $uploaded_photo->move($destinationPath, $filename);
             //mengisi filed cover di book dengan filename yang baru dibuat
 
-            $pegawais = new PegawaiModel;
-            $pegawais->nip = $request->get('nip');
-            $pegawais->user_id = $users->id;
-            $pegawais->jabatan_id = $request->get('jabatan_id');
-            $pegawais->golongan_id = $request->get('golongan_id');
-            $pegawais->photo = $filename;
-            $pegawais->save();
+            $pegawai = new PegawaiModel;
+            $pegawai->nip = $request->get('nip');
+            $pegawai->user_id = $users->id;
+            $pegawai->jabatan_id = $request->get('jabatan_id');
+            $pegawai->golongan_id = $request->get('golongan_id');
+            $pegawai->photo = $filename;
+            $pegawai->save();
         }
 
         return redirect('Pegawai');

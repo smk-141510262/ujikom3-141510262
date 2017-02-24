@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\PegawaiModel;
 use App\JabatanModel;
@@ -37,7 +36,7 @@ class PenggajianController extends Controller
     public function create()
     {
         //
-        $tunjangan_pegawais = TunjanganPegawaiModel::paginate(10);
+        $tunjangans = TunjanganPegawaiModel::paginate(10);
         return view('penggajian.create', compact('tunjangans'));
     }
 
@@ -56,7 +55,7 @@ class PenggajianController extends Controller
         // dd($wherepenggajian);
         $wherepenggajian = PenggajianModel::where('tunjangan_pegawai_id', $where->id)->first();
         // dd($wheretunjangan);
-        $wheretunjangan = TunjanganModel::where('id', $where->tunjangan_id)->first();
+        $wheretunjangan = TunjanganModel::where('id', $where->kode_tunjangan_id)->first();
         // dd($pegawai);
         $wherepegawai = PegawaiModel::where('id', $where->pegawai_id)->first();
         // dd($kategotilembur);
@@ -71,8 +70,8 @@ class PenggajianController extends Controller
         $penggajians = new PenggajianModel;
             if (isset($wherepenggajian)) {
                 $error = true;
-                $tunjangan_pegawais = TunjanganPegawaiModel::paginate(10);
-                return view('penggajian.create', compact('tunjangan_pegawais', 'error'));
+                $tunjangans = TunjanganPegawaiModel::paginate(10);
+                return view('penggajian.create', compact('tunjangans', 'error'));
             }
             elseif (!isset($wherelemburpegawai)) {
                 $nol = 0;
@@ -82,6 +81,7 @@ class PenggajianController extends Controller
                 $penggajians->gaji_total = ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
                 $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
                 $penggajians->petugas_penerima = auth::user()->name;
+                $penggajians->status_pengambilan = Input::get('status_pengambilan');
                 $penggajians->save();
             }
             elseif (!isset($wherelemburpegawai) || !isset($wherekategorilembur)) {
@@ -89,19 +89,21 @@ class PenggajianController extends Controller
                 $penggajians->jumlah_jam_lembur = $nol;
                 $penggajians->jumlah_uang_lembur = $nol;
                 $penggajians->gaji_pokok = ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->gaji_total = ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
+                $penggajians->total_gaji = ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
                 $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
                 $penggajians->petugas_penerima = auth::user()->name;
+                $penggajians->status_pengambilan = Input::get('status_pengambilan');
                 $penggajians->save();
             }
             else {
                 $penggajians->jumlah_jam_lembur = $wherelemburpegawai->jumlah_jam;
                 $penggajians->jumlah_uang_lembur = ($wherelemburpegawai->jumlah_jam) * ($wherekategorilembur->besaran_uang);
                 $penggajians->gaji_pokok = ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->gaji_total = ($wherelemburpegawai->jumlah_jam * $wherekategorilembur->besaran_uang) + ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang + $wheregolongan->besaran_uang);
+                $penggajians->total_gaji = ($wherelemburpegawai->jumlah_jam * $wherekategorilembur->besaran_uang) + ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang + $wheregolongan->besaran_uang);
                 $penggajians->tanggal_pengambilan = date('d-m-y');
                 $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
                 $penggajians->petugas_penerima = auth::user()->name;
+                $penggajians->status_pengambilan = Input::get('status_pengambilan');
                 $penggajians->save();
             }
             return redirect('Penggajian');
@@ -130,9 +132,9 @@ class PenggajianController extends Controller
     {
         //
         $gaji = PenggajianModel::find($id);
-        $penggajian = new PenggajianModel;
-        $penggajian = array('status_pengambilan'=>1, 'tanggal_pengambilan'=>date('y-m-d'));
-        PenggajianModel::where('id', $id)->update($penggajian);
+        $penggajians = new PenggajianModel;
+        $penggajians = array('status_pengambilan'=>1, 'tanggal_pengambilan'=>date('y-m-d'));
+        PenggajianModel::where('id', $id)->update($penggajians);
         return redirect('Penggajian');
     }
 

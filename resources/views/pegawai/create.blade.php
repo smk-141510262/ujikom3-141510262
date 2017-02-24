@@ -79,7 +79,7 @@
                             <label for="name" class="col-md-4 control-label">nip</label>
 
                         <div class="col-md-6">
-                                <input id="nip" type="number" class="form-control" name="nip" value="{{ old('nip') }}" required autofocus>
+                                <input id="nip" type="number" class="form-control" name="nip" value="{{ old('nip') }}" placeholder="Contoh:123456" required autofocus>
 
                                 @if ($errors->has('nip'))
                                     <span class="help-block">
@@ -128,7 +128,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close()!!}
                 </div>
             </div>
         </div>

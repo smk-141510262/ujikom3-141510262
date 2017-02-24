@@ -20,44 +20,25 @@
         ]); ?>
     </script>
     <style>
-        body, .navbar-header {
-            background-image: url("Gambar-Itachi-Uchiha-Wallpaper-Keren-6.jpg");
-        }
-        .panel-heading {
-            background-image: url("background-18325_640.jpg");
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
+        header, footer {
+            padding: 1em;
             color: white;
+            background-color:   #6495ED;
+            clear: left;
             text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
         }
 
-        li a:hover {
-            background-color: #111;
-        }
-        .active {
-            background-color: #00008B;
-        }
-        h2 {
+        h1, h2, h3 {
+            font-family:verdana;
             color: blue;
             text-shadow: 2px 2px 4px red;
         }
     </style>
 </head>
+<header>
+    <h1>"APLIKASI SISTEM PENGGAJIAN"</h1>
+    <h3>SMK ASSALAAM BANDUNG</h3>
+</header>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -73,20 +54,30 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <ul>
+                    <ul class="nav navbar-nav">
                         <li><a class="active" href="{{ url('/home') }}">Home</a></li>
                         <li><a href="{{ url('/Jabatan') }}">Jabatan</a></li>
                         <li><a class="active" href="{{ url('/Golongan') }}">Golongan</a></li>
                         <li><a href="{{ url('/Pegawai') }}">Pegawai</a></li>
                         <li><a class="active" href="{{ url('/Penggajian') }}">Penggajian</a></li>
-                        <li><a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a></li>
-                        <li><a class="active" href="{{ url('/LemburPegawai') }}">Lembur Pegawai</a></li>
-                        <li><a href="{{ url('/Tunjangan') }}">Tunjangan</a></li>
-                        <li><a class="active" href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a></li>
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a class="active" href="{{ url('/register') }}">Register</a></li>
-                        @else
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lembur<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ url('/KategoriLembur') }}">Kategori Lembur</a>
+                                    <a class="active" href="{{ url('/LemburPegawai') }}">Lembur Pegawai</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tunjangan<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ url('/Tunjangan') }}">Tunjangan</a>
+                                    <a class="active" href="{{ url('/TunjanganPegawai') }}">Tunjangan Pegawai</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
@@ -94,6 +85,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a class="active" href="{{ url('/register') }}">Register</a></li>
+                        @else
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -127,6 +122,8 @@
 
         @yield('content')
     </div>
+
+    <footer>Yuyu Denella &copy; 141510262@smkassalaambandung.sch.id</footer>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

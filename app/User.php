@@ -29,10 +29,14 @@ class User extends Authenticatable
 
     public function pegawai()
     {
-        return $this->hasOne('App\Pegawai','user_id');
+        return $this->hasOne('App\PegawaiModel','user_id');
+    }
+    public function tunjangan()
+    {
+        return $this->hasOne('App\TunjanganModel','user_id');
     }
     public function tunjangan_pegawai()
     {
-        return $this->hasOne('App\Tunjangan_pegawai','user_id');
+        return $this->hasOne('App\TunjanganPegawaiModel','user_id');
     }
 }

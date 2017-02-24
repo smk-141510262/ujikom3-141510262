@@ -67,6 +67,8 @@
                                 <select name="permission" class="form-control">
                                     <option value="Admin">Admin</option>
                                     <option value="Pegawai">Pegawai</option>
+                                    <option value="Bendahara">Bendahara</option>
+                                    <option value="HRD">HRD</option>
                                 </select><br>
                             </div>
                         </div>
@@ -77,7 +79,7 @@
                             <label for="name" class="col-md-4 control-label">nip</label>
 
                         <div class="col-md-6">
-                                <input id="nip" type="number" class="form-control" name="nip" value="<?php echo e(old('nip')); ?>" required autofocus>
+                                <input id="nip" type="number" class="form-control" name="nip" value="<?php echo e(old('nip')); ?>" placeholder="Contoh:123456" required autofocus>
 
                                 <?php if($errors->has('nip')): ?>
                                     <span class="help-block">
@@ -126,7 +128,8 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    <?php echo Form::close(); ?>
+
                 </div>
             </div>
         </div>
