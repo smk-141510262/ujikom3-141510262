@@ -48,63 +48,53 @@ class PenggajianController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($penggajian);
-        $penggajians = Input::all();
-         // dd($where);
-        $where = TunjanganPegawaiModel::where('id', $penggajians['tunjangan_pegawai_id'])->first();
-        // dd($wherepenggajian);
-        $wherepenggajian = PenggajianModel::where('tunjangan_pegawai_id', $where->id)->first();
-        // dd($wheretunjangan);
-        $wheretunjangan = TunjanganModel::where('id', $where->kode_tunjangan_id)->first();
-        // dd($pegawai);
-        $wherepegawai = PegawaiModel::where('id', $where->pegawai_id)->first();
-        // dd($kategotilembur);
-        $wherekategorilembur = KategoriLemburModel::where('jabatan_id', $wherepegawai->jabatan_id)->where('golongan_id', $wherepegawai->golongan_id)->first();
-        // dd($lemburpegawai);
-        $wherelemburpegawai = LemburPegawaiModel::where('pegawai_id', $wherepegawai->id)->first();
-        // dd($jabatan);
-        $wherejabatan = JabatanModel::where('id', $wherepegawai->jabatan_id)->first();
-        // dd($golongan);
-        $wheregolongan = GolonganModel::where('id', $wherepegawai->golongan_id)->first();
-
-        $penggajians = new PenggajianModel;
-            if (isset($wherepenggajian)) {
-                $error = true;
-                $tunjangans = TunjanganPegawaiModel::paginate(10);
-                return view('penggajian.create', compact('tunjangans', 'error'));
-            }
-            elseif (!isset($wherelemburpegawai)) {
-                $nol = 0;
-                $penggajians->jumlah_jam_lembur = $nol;
-                $penggajians->jumlah_uang_lembur = $nol;
-                $penggajians->gaji_pokok = ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->gaji_total = ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
-                $penggajians->petugas_penerima = auth::user()->name;
-                $penggajians->status_pengambilan = Input::get('status_pengambilan');
-                $penggajians->save();
-            }
-            elseif (!isset($wherelemburpegawai) || !isset($wherekategorilembur)) {
-                $nol = 0;
-                $penggajians->jumlah_jam_lembur = $nol;
-                $penggajians->jumlah_uang_lembur = $nol;
-                $penggajians->gaji_pokok = ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->total_gaji = ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
-                $penggajians->petugas_penerima = auth::user()->name;
-                $penggajians->status_pengambilan = Input::get('status_pengambilan');
-                $penggajians->save();
-            }
-            else {
-                $penggajians->jumlah_jam_lembur = $wherelemburpegawai->jumlah_jam;
-                $penggajians->jumlah_uang_lembur = ($wherelemburpegawai->jumlah_jam) * ($wherekategorilembur->besaran_uang);
-                $penggajians->gaji_pokok = ($wherejabatan->besaran_uang) + ($wheregolongan->besaran_uang);
-                $penggajians->total_gaji = ($wherelemburpegawai->jumlah_jam * $wherekategorilembur->besaran_uang) + ($wheretunjangan->besaran_uang) + ($wherejabatan->besaran_uang + $wheregolongan->besaran_uang);
-                $penggajians->tanggal_pengambilan = date('d-m-y');
-                $penggajians->tunjangan_pegawai_id = Input::get('tunjangan_pegawai_id');
-                $penggajians->petugas_penerima = auth::user()->name;
-                $penggajians->status_pengambilan = Input::get('status_pengambilan');
-                $penggajians->save();
+        $penggajians=Input::all();
+        $where=TunjanganPegawaiModel::where('id',$penggajians['tunjangan_pegawai_id'])->first();
+        $wherepenggajian=PenggajianModel::where('tunjangan_pegawai_id',$where->id)->first();
+        $wheretunjangan=TunjanganModel::where('id',$where->kode_tunjangan_id)->first();
+        $wherepegawai=PegawaiModel::where('id',$where->pegawai_id)->first();
+        $wherekategorilembur=KategoriLemburModel::where('jabatan_id',$wherepegawai->jabatan_id)->where('golongan_id',$wherepegawai->golongan_id)->first();
+        $wherelemburpegawai=LemburPegawaiModel::where('pegawai_id',$wherepegawai->id)->first();
+        $wherejabatan=JabatanModel::where('id',$wherepegawai->jabatan_id)->first();
+        $wheregolongan=GolonganModel::where('id',$wherepegawai->golongan_id)->first();
+        $penggajians=new PenggajianModel ;
+        if (isset($wherepenggajian)) {
+            $error=true ;
+            $tunjangans=TunjanganPegawaiModel::paginate(10);
+            return view('penggajian.create',compact('tunjangans','error'));
+        }
+        elseif (!isset($wherelemburpegawai)) {
+            $nol=0 ;
+            $penggajians->jumlah_jam_lembur=$nol;
+            $penggajians->jumlah_uang_lembur=$nol ;
+            $penggajians->gaji_pokok=$wherejabatan->besaran_uang+$wheregolongan->besaran_uang;
+            $penggajians->total_gaji=($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang+$wheregolongan->besaran_uang);
+        $penggajians->tunjangan_pegawai_id=Input::get('tunjangan_pegawai_id');
+        $penggajians->petugas_penerima=auth::user()->name ;
+        $penggajians->status_pengambilan=Input::get('status_pengambilan');
+        $penggajians->save();
+        }
+        elseif (!isset($wherelemburpegawai)||!isset($wherekategorilembur)) {
+            $nol=0 ;
+            $penggajians->jumlah_jam_lembur=$nol;
+            $penggajians->jumlah_uang_lembur=$nol ;
+            $penggajians->gaji_pokok=$wherejabatan->besaran_uang+$wheregolongan->besaran_uang;
+            $penggajians->total_gaji=($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang+$wheregolongan->besaran_uang);
+        $penggajians->tunjangan_pegawai_id=Input::get('tunjangan_pegawai_id');
+        $penggajians->petugas_penerima=auth::user()->name ;
+        $penggajians->status_pengambilan=Input::get('status_pengambilan');
+        $penggajians->save();
+        }
+        else{
+            $penggajians->jumlah_jam_lembur=$wherelemburpegawai->jumlah_jam;
+            $penggajians->jumlah_uang_lembur=$wherelemburpegawai->jumlah_jam*$wherekategorilembur->besaran_uang ;
+            $penggajians->gaji_pokok=$wherejabatan->besaran_uang+$wheregolongan->besaran_uang;
+            $penggajians->total_gaji=($wherelemburpegawai->jumlah_jam*$wherekategorilembur->besaran_uang)+($wheretunjangan->besaran_uang)+($wherejabatan->besaran_uang+$wheregolongan->besaran_uang);
+            $penggajians->tanggal_pengambilan =date('d-m-y');
+            $penggajians->tunjangan_pegawai_id=Input::get('tunjangan_pegawai_id');
+            $penggajians->petugas_penerima=auth::user()->name ;
+            $penggajians->status_pengambilan=Input::get('status_pengambilan');
+            $penggajians->save();
             }
             return redirect('Penggajian');
     }
